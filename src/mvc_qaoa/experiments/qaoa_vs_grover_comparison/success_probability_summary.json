@@ -1,0 +1,42 @@
+[
+  {
+    "graph": "K3",
+    "qaoa_p1_success": 0.7488,
+    "qaoa_p2_success": 0.874,
+    "qaoa_p3_success": 0.9709,
+    "grover_arith_success": 0.8584,
+    "grover_dicke_success": 0.7041
+  },
+  {
+    "graph": "K4",
+    "qaoa_p1_success": 0.6704,
+    "qaoa_p2_success": 0.3816,
+    "qaoa_p3_success": 0.8896,
+    "grover_arith_success": 1.0,
+    "grover_dicke_success": 0.9961
+  },
+  {
+    "graph": "K5",
+    "qaoa_p1_success": 0.4177,
+    "qaoa_p2_success": 0.2581,
+    "qaoa_p3_success": 0.4949,
+    "grover_arith_success": 0.8662,
+    "grover_dicke_success": 0.8994
+  },
+  {
+    "graph": "K6",
+    "qaoa_p1_success": 0.2742,
+    "qaoa_p2_success": 0.0901,
+    "qaoa_p3_success": 0.1133,
+    "grover_arith_success": 0.6436,
+    "grover_dicke_success": 0.6494
+  },
+  {
+    "graph": "K7",
+    "qaoa_p1_success": 0.3318,
+    "qaoa_p2_success": 0.0842,
+    "qaoa_p3_success": 0.3821,
+    "grover_arith_success": 0.4199,
+    "grover_dicke_success": 0.0
+  }
+]
