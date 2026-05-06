@@ -1,0 +1,4 @@
+graph_n,num_vertices,num_edges,min_size,num_pivots_tested,total_elapsed_time_sec,max_circuit_depth,max_transpiled_depth,qubits_used,max_total_gates,best_pivot,max_success_rate_pct,total_good_shots_in_best,num_unique_good_states_in_best,top_best_state,top_best_count,best_states_summary,grover_iterations,shots
+3,3,3,1,3,1.6889,93,90,14,158,3,66.89,389,3,101,139,"{""011"": 129, ""101"": 139, ""110"": 121}",1,1024
+4,4,6,2,3,10.4679,149,146,20,246,4,63.48,258,4,1110,71,"{""1110"": 71, ""0111"": 61, ""1101"": 55, ""1011"": 71}",1,1024
+5,5,10,3,3,185.6382,187,184,25,312,5,52.34,146,5,10111,33,"{""10111"": 33, ""01111"": 26, ""11110"": 28, ""11101"": 31, ""11011"": 28}",1,1024

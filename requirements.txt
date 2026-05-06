@@ -1,0 +1,17 @@
+# Core quantum computing
+qiskit>=1.0,<2.0
+qiskit-aer>=0.14,<1.0
+
+# Optimization & numerical
+numpy>=1.24
+scipy>=1.10
+
+# Graphs
+networkx>=3.0
+
+# Visualization
+matplotlib>=3.7
+pylatexenc>=2.10
+
+# Utilities
+tqdm>=4.64

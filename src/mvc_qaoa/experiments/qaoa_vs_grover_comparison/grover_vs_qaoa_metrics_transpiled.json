@@ -1,0 +1,147 @@
+[
+  {
+    "graph": "K3",
+    "n": 3,
+    "qaoa_p1": {
+      "depth": 18,
+      "cx": 6,
+      "gates": 35
+    },
+    "qaoa_p2": {
+      "depth": 32,
+      "cx": 12,
+      "gates": 58
+    },
+    "qaoa_p3": {
+      "depth": 46,
+      "cx": 18,
+      "gates": 81
+    },
+    "dicke": {
+      "depth": 329,
+      "cx": 140,
+      "gates": 477
+    },
+    "arith": {
+      "depth": 878,
+      "cx": 474,
+      "gates": 1294
+    }
+  },
+  {
+    "graph": "K4",
+    "n": 4,
+    "qaoa_p1": {
+      "depth": 24,
+      "cx": 12,
+      "gates": 53
+    },
+    "qaoa_p2": {
+      "depth": 41,
+      "cx": 24,
+      "gates": 90
+    },
+    "qaoa_p3": {
+      "depth": 58,
+      "cx": 36,
+      "gates": 127
+    },
+    "dicke": {
+      "depth": 1102,
+      "cx": 456,
+      "gates": 1443
+    },
+    "arith": {
+      "depth": 9023,
+      "cx": 4102,
+      "gates": 10996
+    }
+  },
+  {
+    "graph": "K5",
+    "n": 5,
+    "qaoa_p1": {
+      "depth": 30,
+      "cx": 20,
+      "gates": 74
+    },
+    "qaoa_p2": {
+      "depth": 50,
+      "cx": 40,
+      "gates": 128
+    },
+    "qaoa_p3": {
+      "depth": 70,
+      "cx": 60,
+      "gates": 182
+    },
+    "dicke": {
+      "depth": 2181,
+      "cx": 1059,
+      "gates": 3272
+    },
+    "arith": {
+      "depth": 16440,
+      "cx": 7729,
+      "gates": 20728
+    }
+  },
+  {
+    "graph": "K6",
+    "n": 6,
+    "qaoa_p1": {
+      "depth": 36,
+      "cx": 30,
+      "gates": 98
+    },
+    "qaoa_p2": {
+      "depth": 59,
+      "cx": 60,
+      "gates": 172
+    },
+    "qaoa_p3": {
+      "depth": 82,
+      "cx": 90,
+      "gates": 246
+    },
+    "dicke": {
+      "depth": 3897,
+      "cx": 1974,
+      "gates": 5910
+    },
+    "arith": {
+      "depth": 39654,
+      "cx": 17899,
+      "gates": 47889
+    }
+  },
+  {
+    "graph": "K7",
+    "n": 7,
+    "qaoa_p1": {
+      "depth": 42,
+      "cx": 42,
+      "gates": 125
+    },
+    "qaoa_p2": {
+      "depth": 68,
+      "cx": 84,
+      "gates": 222
+    },
+    "qaoa_p3": {
+      "depth": 94,
+      "cx": 126,
+      "gates": 319
+    },
+    "dicke": {
+      "depth": 6312,
+      "cx": 3319,
+      "gates": 9671
+    },
+    "arith": {
+      "depth": 18402,
+      "cx": 8584,
+      "gates": 23000
+    }
+  }
+]
