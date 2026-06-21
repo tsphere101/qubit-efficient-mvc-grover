@@ -1,0 +1,1 @@
+"""Dicke solver for diagram generation - copied from mvc-solver-1.4.0"""

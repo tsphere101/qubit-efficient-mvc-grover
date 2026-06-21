@@ -54,8 +54,8 @@ DISPLAY_NAMES = {
     "C6": r"$C_6$",
 }
 
-REPO_ROOT = Path("/Users/topfee/Desktop/quantum-research")
-PYTHON = REPO_ROOT / "src" / "mvc-solver-1.4.0" / "venv" / "bin" / "python"
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent  # qubit-efficient-mvc-grover/
+PYTHON = sys.executable
 EXTRACT_SCRIPT = REPO_ROOT / "src" / "mvc_qaoa" / "experiments" / "extract_grover_single.py"
 
 # ---------------------------------------------------------------------------

@@ -10,7 +10,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-REPO_ROOT = Path("/Users/topfee/Desktop/quantum-research")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent  # qubit-efficient-mvc-grover/
 QAOA_RUN_DIR = REPO_ROOT / "src" / "mvc_qaoa" / "experiments" / "run_20260426_111406"
 OUTPUT_DIR = REPO_ROOT / "src" / "mvc_qaoa" / "experiments" / "qaoa_vs_grover_comparison"
 OUTPUT_DIR.mkdir(exist_ok=True)
