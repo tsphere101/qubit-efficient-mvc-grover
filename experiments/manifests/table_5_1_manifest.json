@@ -1,0 +1,56 @@
+{
+  "manifest_version": "1.0",
+  "thesis_table": "5.1",
+  "thesis_label": "tab:qubit-scaling",
+  "git_commit": "9dcb60bb4fd9406e9208e7283bd722a994195dd8",
+  "git_branch": "feat/i-081-provenance-infra",
+  "timestamp": "2026-06-21T15:53:15.851721+00:00",
+  "solver": "formula (no experiment)",
+  "experiment_config": "experiments/configs/table_5.1*.yaml",
+  "input_params": {
+    "graphs": [
+      {
+        "name": "K3",
+        "n": 3
+      },
+      {
+        "name": "K4",
+        "n": 4
+      },
+      {
+        "name": "K5",
+        "n": 5
+      },
+      {
+        "name": "K6",
+        "n": 6
+      },
+      {
+        "name": "K7",
+        "n": 7
+      }
+    ],
+    "shots": 0,
+    "grover_iterations": "",
+    "method": "formula"
+  },
+  "outputs": {
+    "run_dir": ""
+  },
+  "results": {
+    "rows": []
+  },
+  "environment": {
+    "python": "3.14.3",
+    "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "qiskit": "2.4.1",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "networkx": "3.6.1",
+    "matplotlib": "3.10.9"
+  },
+  "extra": {
+    "formula": "Arithmetic: n + 2*t + 3 where t = ceil(log2(n+1))\nDicke: n + m + 2\nWeighted: n + 2*t + 3 where t = ceil(log2(sum(weights)+1))\n",
+    "description": "Qubit counts are formula-derived, not measured. No experiment needed."
+  }
+}
