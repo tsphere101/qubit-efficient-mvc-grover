@@ -1,0 +1,74 @@
+[
+  {
+    "table": "5.7",
+    "graph": "K_{2,2}",
+    "n": 4,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.7",
+    "graph": "K_{2,3}",
+    "n": 5,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.2",
+    "graph": "K6",
+    "n": 6,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.4",
+    "graph": "K6",
+    "n": 6,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.3",
+    "graph": "K6",
+    "n": 6,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.8",
+    "graph": "K6",
+    "n": 6,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.2",
+    "graph": "K7",
+    "n": 7,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.4",
+    "graph": "K7",
+    "n": 7,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.3",
+    "graph": "K7",
+    "n": 7,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.7",
+    "graph": "K_{3,3}",
+    "n": 6,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.7",
+    "graph": "K_{3,4}",
+    "n": 7,
+    "reason": "timeout"
+  },
+  {
+    "table": "5.7",
+    "graph": "K_{3,5}",
+    "n": 8,
+    "reason": "\n--- Solving for K_8 ---\nTesting pivot=37...\nSimulation failed and returned the following error message:\nERROR:  [Experiment 0] Insufficient memory to run circuit circuit-46-49 using the statevector s"
+  }
+]
