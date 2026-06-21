@@ -20,8 +20,12 @@ DIAGRAMS_DIR = REPO_ROOT / "diagrams"
 def load_manifests() -> list[dict]:
     manifests = []
     for p in sorted(MANIFESTS_DIR.glob("*.json")):
+        if p.name == "skipped_graphs.json":
+            continue
         try:
-            manifests.append(json.loads(p.read_text()))
+            data = json.loads(p.read_text())
+            if isinstance(data, dict) and "thesis_table" in data:
+                manifests.append(data)
         except json.JSONDecodeError:
             print(f"WARNING: could not parse {p}")
     return manifests

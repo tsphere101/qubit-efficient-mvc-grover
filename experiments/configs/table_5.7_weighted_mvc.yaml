@@ -5,11 +5,11 @@ label: "tab:weighted-results"
 type: grover
 solver_key: weighted
 solver: "mvc-solver-1.5.0"
-method: statevector
+method: shot-based
 shots: 1024
 grover_iterations: "optimal"
 no_barrier: true
-include_statevector: true
+include_statevector: false
 skip_k: true
 graphs:
   - name: "K_{2,2}"

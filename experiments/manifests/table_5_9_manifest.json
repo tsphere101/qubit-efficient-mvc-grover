@@ -1,12 +1,12 @@
 {
   "manifest_version": "1.0",
-  "thesis_table": "5.1",
-  "thesis_label": "tab:qubit-scaling",
+  "thesis_table": "5.9",
+  "thesis_label": "tab:memory-scaling",
   "git_commit": "6df85ad1a59963ca50a348365cc776c5ab08bf41",
   "git_branch": "feat/i-081-experiment-runs",
-  "timestamp": "2026-06-21T15:59:59.823454+00:00",
+  "timestamp": "2026-06-21T16:00:00.519928+00:00",
   "solver": "formula (no experiment)",
-  "experiment_config": "experiments/configs/table_5.1*.yaml",
+  "experiment_config": "experiments/configs/table_5.9*.yaml",
   "input_params": {
     "graphs": [
       {
@@ -50,7 +50,7 @@
     "matplotlib": "3.10.9"
   },
   "extra": {
-    "formula": "Arithmetic: n + 2*t + 3 where t = ceil(log2(n+1))\nDicke: n + m + 2\nWeighted: n + 2*t + 3 where t = ceil(log2(sum(weights)+1))\n",
-    "description": "Qubit counts are formula-derived, not measured. No experiment needed."
+    "formula": "Memory = 2^(n_qubits) × 16 bytes (complex128)\nArithmetic K7: 2^23 × 16 = 134,217,728 bytes ≈ 128 MB\nDicke K6: 2^20 × 16 = 16,777,216 bytes ≈ 16 MB\n",
+    "description": "Memory is formula-derived from qubit counts. No experiment needed."
   }
 }
