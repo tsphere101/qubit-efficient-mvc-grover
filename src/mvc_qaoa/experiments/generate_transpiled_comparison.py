@@ -10,8 +10,9 @@ Output:
     - Updated metrics JSON (grover_vs_qaoa_metrics_transpiled.json)
     - Depth comparison figure (fig_depth_comparison.png)
 """
-import sys, json
-sys.path.insert(0, '/Users/topfee/Desktop/quantum-research/src/mvc_qaoa')
+import sys, json, os
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(REPO_ROOT, 'src', 'mvc_qaoa'))
 
 import matplotlib
 matplotlib.use('Agg')
@@ -23,7 +24,7 @@ from src.circuit import build_qaoa_circuit
 from src.qubo import build_mvc_qubo
 from src.ising import qubo_to_ising
 
-OUT_DIR = '/Users/topfee/Desktop/quantum-research/src/mvc_qaoa/experiments/qaoa_vs_grover_comparison'
+OUT_DIR = os.path.join(REPO_ROOT, 'src', 'mvc_qaoa', 'experiments', 'qaoa_vs_grover_comparison')
 
 GRAPHS = {
     'K3': (3, [(0,1),(0,2),(1,2)]),
@@ -63,7 +64,7 @@ for name, (n, edges) in sorted(GRAPHS.items()):
 for m in list(sys.modules.keys()):
     if 'solver' in m:
         del sys.modules[m]
-sys.path.insert(0, '/Users/topfee/Desktop/quantum-research/src/mvc-solver-1.4.0')
+sys.path.insert(0, os.path.join(REPO_ROOT, 'src', 'mvc-solver-1.4.0'))
 from solver.models import SolverConfig as DickeConfig
 from solver.circuit_builder import VertexCoverPenaltyCircuitBuilder as DickeBuilder
 
@@ -78,7 +79,7 @@ for name, (n, edges) in sorted(GRAPHS.items()):
 for m in list(sys.modules.keys()):
     if 'solver' in m:
         del sys.modules[m]
-sys.path.insert(0, '/Users/topfee/Desktop/quantum-research/src/mvc-solver-1.3.0')
+sys.path.insert(0, os.path.join(REPO_ROOT, 'src', 'mvc-solver-1.3.0'))
 from solver.models import SolverConfig as ArithConfig
 from solver.circuit_builder import VertexCoverPenaltyCircuitBuilder as ArithBuilder
 

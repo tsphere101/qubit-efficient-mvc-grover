@@ -1,0 +1,1 @@
+"""Weighted solver for diagram generation - copied from mvc-solver-1.5.0"""
