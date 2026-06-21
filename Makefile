@@ -1,23 +1,28 @@
 # Qubit-Efficient MVC Grover — Makefile
 # =====================================
 # Targets:
-#   all         — Run all experiments end-to-end
-#   paper      — Compile LaTeX paper
-#   qaoa       — Run QAOA comparison benchmarks
-#   arithmetic — Run arithmetic solver benchmarks
-#   dicke      — Run Dicke-state solver benchmarks
-#   weighted   — Run weighted arithmetic solver benchmarks
-#   figures    — Generate scaling comparison figures
-#   clean      — Remove generated artifacts
-#   env        — Set up Python virtual environment
+#   all          — Run all experiments end-to-end
+#   paper        — Compile LaTeX paper
+#   qaoa         — Run QAOA comparison benchmarks
+#   arithmetic   — Run arithmetic solver benchmarks
+#   dicke        — Run Dicke-state solver benchmarks
+#   weighted     — Run weighted arithmetic solver benchmarks
+#   figures      — Generate all thesis figures
+#   experiments  — Run thesis experiments with provenance manifests
+#   provenance   — Generate PROVENANCE.md from manifests
+#   clean        — Remove generated artifacts
+#   env          — Set up Python virtual environment
 
 SHELL := /bin/bash
-.PHONY: all paper qaoa arithmetic dicke weighted figures clean env
+.PHONY: all paper qaoa arithmetic dicke weighted figures experiments provenance clean env check
 
 # Default Python
 PYTHON := python3
 VENV   := .venv
 ACTIVATE := $(VENV)/bin/activate
+
+# Thesis figures directory (relative path)
+THESIS_FIG := ../overleaf/thesis-final-latex-v1/Figures/manuscript-images
 
 # ------------------------------------------------------------------
 # Environment
@@ -88,13 +93,43 @@ weighted: env
 		python main.py --graph-edges "0,1;1,2;2,3" --vertex-weights "1,2,3,4" --shots 1024 --skip-k
 
 # ------------------------------------------------------------------
-# Scaling figures
+# Figures — generate all thesis figures from code
 # ------------------------------------------------------------------
 figures: env
-	@echo "Generating qubit and depth scaling charts..."
-	. $(ACTIVATE) && cd manuscript && python generate_scaling_charts.py
-	@echo "Generating depth comparison chart..."
-	. $(ACTIVATE) && cd manuscript && python circuit_depth_comparison.py
+	@echo "Generating all thesis figures..."
+	. $(ACTIVATE) && python diagrams/bloch_sphere.py
+	. $(ACTIVATE) && python diagrams/quantum_gates.py
+	. $(ACTIVATE) && python diagrams/mvc_graph.py
+	. $(ACTIVATE) && python diagrams/mvc_graph_example.py
+	. $(ACTIVATE) && python diagrams/gate_decomposition.py
+	. $(ACTIVATE) && python diagrams/qubit_utilization.py
+	. $(ACTIVATE) && python diagrams/qubit_utilization_3d.py
+	. $(ACTIVATE) && python diagrams/simulation_runtime.py
+	. $(ACTIVATE) && python diagrams/circuit_depth_comparison.py
+	. $(ACTIVATE) && python diagrams/generate_scaling_charts.py
+	. $(ACTIVATE) && python diagrams/fully_connected_graph.py
+	. $(ACTIVATE) && python diagrams/box_circuit_generator.py
+	. $(ACTIVATE) && python diagrams/cuccaro_comparator.py
+	. $(ACTIVATE) && python diagrams/grover_reflection.py
+	. $(ACTIVATE) && python diagrams/grovers_circuit.py
+	@echo "Copying figures to thesis directory..."
+	@mkdir -p $(THESIS_FIG)
+	cp *.png *.jpg $(THESIS_FIG)/ 2>/dev/null || true
+	@echo "Done."
+
+# ------------------------------------------------------------------
+# Experiments — run thesis experiments with provenance
+# ------------------------------------------------------------------
+experiments: env
+	@echo "Running thesis experiments with provenance manifests..."
+	. $(ACTIVATE) && python experiments/run_all.py --all
+
+# ------------------------------------------------------------------
+# Provenance — generate PROVENANCE.md from manifests
+# ------------------------------------------------------------------
+provenance: env
+	@echo "Generating PROVENANCE.md..."
+	. $(ACTIVATE) && python experiments/generate_provenance_map.py
 
 # ------------------------------------------------------------------
 # Clean
