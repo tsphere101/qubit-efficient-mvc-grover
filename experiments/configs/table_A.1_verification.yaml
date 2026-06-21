@@ -1,0 +1,9 @@
+# Table A.1 — Verification: transpiled resource counts for K3
+table: "A.1"
+title: "Transpiled resource verification for K3"
+label: "tab:app-verification"
+type: transpiled
+script: "src/mvc_qaoa/experiments/generate_transpiled_comparison.py"
+method: transpilation
+graphs:
+  - {name: "K3", n: 3}

@@ -1,0 +1,13 @@
+# Table 5.6 — Transpiled CX gate counts (all 3 architectures, K3-K7)
+table: "5.6"
+title: "Transpiled CX gate counts"
+label: "tab:cx-count"
+type: transpiled
+script: "src/mvc_qaoa/experiments/generate_transpiled_comparison.py"
+method: transpilation
+graphs:
+  - {name: "K3", n: 3}
+  - {name: "K4", n: 4}
+  - {name: "K5", n: 5}
+  - {name: "K6", n: 6}
+  - {name: "K7", n: 7}
