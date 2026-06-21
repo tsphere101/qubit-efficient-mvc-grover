@@ -5,10 +5,10 @@ label: "tab:full-comparison"
 type: grover
 solver_key: arithmetic
 solver: "mvc-solver-1.3.0"
-method: statevector
+method: shot-based
 shots: 1024
 grover_iterations: 1
 no_barrier: true
-include_statevector: true
+include_statevector: false
 graphs:
   - {name: "K6", n: 6}

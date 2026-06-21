@@ -7,6 +7,12 @@ Every number, table, figure, and claim in the thesis traces to reproducible code
 | Table | Manifest | Config | Solver | Method |
 |---|---|---|---|---|
 | 5.1 (tab:qubit-scaling) | `manifests/table_5_1_manifest.json` | `configs/table_5.1*` | formula (no experiment) | formula |
+| 5.2 (tab:depth-scaling) | `manifests/table_5_2_manifest.json` | `configs/table_5.2*` | mvc-solver-1.3.0 | shot-based |
+| 5.3 (tab:depth-compare) | `manifests/table_5_3_manifest.json` | `configs/table_5.3*` | mvc-solver-1.3.0 | shot-based |
+| 5.4 (tab:success-prob) | `manifests/table_5_4_manifest.json` | `configs/table_5.4*` | mvc-solver-1.3.0 | shot-based |
+| 5.7 (tab:weighted-results) | `manifests/table_5_7_manifest.json` | `configs/table_5.7*` | mvc-solver-1.5.0 | shot-based |
+| 5.8 (tab:full-comparison) | `manifests/table_5_8_manifest.json` | `configs/table_5.8*` | mvc-solver-1.3.0 | shot-based |
+| 5.9 (tab:memory-scaling) | `manifests/table_5_9_manifest.json` | `configs/table_5.9*` | formula (no experiment) | formula |
 
 ## Figure Generators
 
@@ -37,5 +43,5 @@ Every number, table, figure, and claim in the thesis traces to reproducible code
 | networkx | 3.6.1 |
 | matplotlib | 3.10.9 |
 
-**Git commit:** `9dcb60bb4fd9406e9208e7283bd722a994195dd8`
-**Branch:** `feat/i-081-provenance-infra`
+**Git commit:** `6df85ad1a59963ca50a348365cc776c5ab08bf41`
+**Branch:** `feat/i-081-experiment-runs`
