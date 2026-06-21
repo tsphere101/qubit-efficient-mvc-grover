@@ -1,0 +1,98 @@
+{
+  "manifest_version": "1.0",
+  "thesis_table": "5.3",
+  "thesis_label": "tab:depth-compare",
+  "git_commit": "6df85ad1a59963ca50a348365cc776c5ab08bf41",
+  "git_branch": "feat/i-081-experiment-runs",
+  "timestamp": "2026-06-21T16:59:58.005482+00:00",
+  "solver": "mvc-solver-1.3.0",
+  "experiment_config": "experiments/configs/table_5.3*.yaml",
+  "input_params": {
+    "graphs": [],
+    "shots": 1024,
+    "grover_iterations": "",
+    "method": "shot-based"
+  },
+  "outputs": {
+    "run_dir": ""
+  },
+  "results": {
+    "rows": [
+      {
+        "name": "K3",
+        "n": 3,
+        "edges": 3,
+        "elapsed": 4.878709077835083,
+        "status": "ok"
+      },
+      {
+        "name": "K4",
+        "n": 4,
+        "edges": 6,
+        "elapsed": 11.23662519454956,
+        "status": "ok"
+      },
+      {
+        "name": "K5",
+        "n": 5,
+        "edges": 10,
+        "elapsed": 19.5615131855011,
+        "status": "ok"
+      },
+      {
+        "name": "K3",
+        "n": 3,
+        "edges": 3,
+        "elapsed": 3.0796570777893066,
+        "status": "ok"
+      },
+      {
+        "name": "K4",
+        "n": 4,
+        "edges": 6,
+        "elapsed": 4.182599782943726,
+        "status": "ok"
+      },
+      {
+        "name": "K5",
+        "n": 5,
+        "edges": 10,
+        "elapsed": 7.083768129348755,
+        "status": "ok"
+      },
+      {
+        "name": "K6",
+        "n": 6,
+        "edges": 15,
+        "elapsed": 30.036794900894165,
+        "status": "skipped",
+        "reason": "timeout"
+      },
+      {
+        "name": "K7",
+        "n": 7,
+        "edges": 21,
+        "elapsed": 30.01304292678833,
+        "status": "skipped",
+        "reason": "timeout"
+      },
+      {
+        "name": "K6",
+        "n": 6,
+        "edges": 15,
+        "elapsed": 23.478739023208618,
+        "status": "ok"
+      }
+    ]
+  },
+  "environment": {
+    "python": "3.14.3",
+    "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "qiskit": "2.4.1",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "networkx": "3.6.1",
+    "matplotlib": "3.10.9"
+  },
+  "extra": {}
+}
