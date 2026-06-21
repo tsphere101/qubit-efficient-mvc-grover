@@ -1,0 +1,16 @@
+# Table 5.1 — Qubit scaling across architectures
+table: "5.1"
+title: "Qubit scaling across architectures"
+label: "tab:qubit-scaling"
+type: formula
+formula: |
+  Arithmetic: n + 2*t + 3 where t = ceil(log2(n+1))
+  Dicke: n + m + 2
+  Weighted: n + 2*t + 3 where t = ceil(log2(sum(weights)+1))
+description: "Qubit counts are formula-derived, not measured. No experiment needed."
+graphs:
+  - {name: "K3", n: 3}
+  - {name: "K4", n: 4}
+  - {name: "K5", n: 5}
+  - {name: "K6", n: 6}
+  - {name: "K7", n: 7}

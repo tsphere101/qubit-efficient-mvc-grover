@@ -1,0 +1,16 @@
+# Table 5.9 — Memory scaling (formula: 2^nq × 16 bytes)
+table: "5.9"
+title: "Memory scaling for statevector simulation"
+label: "tab:memory-scaling"
+type: formula
+formula: |
+  Memory = 2^(n_qubits) × 16 bytes (complex128)
+  Arithmetic K7: 2^23 × 16 = 134,217,728 bytes ≈ 128 MB
+  Dicke K6: 2^20 × 16 = 16,777,216 bytes ≈ 16 MB
+description: "Memory is formula-derived from qubit counts. No experiment needed."
+graphs:
+  - {name: "K3", n: 3}
+  - {name: "K4", n: 4}
+  - {name: "K5", n: 5}
+  - {name: "K6", n: 6}
+  - {name: "K7", n: 7}

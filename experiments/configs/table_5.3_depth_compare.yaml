@@ -1,0 +1,21 @@
+# Table 5.3 — Depth comparison across 3 architectures (K3-K7)
+table: "5.3"
+title: "Circuit depth comparison across architectures"
+label: "tab:depth-compare"
+type: grover
+solver_key: arithmetic
+solver: "mvc-solver-1.3.0"
+method: statevector
+shots: 1024
+grover_iterations: 1
+no_barrier: true
+include_statevector: false
+graphs:
+  - {name: "K3", n: 3}
+  - {name: "K4", n: 4}
+  - {name: "K5", n: 5}
+  - {name: "K6", n: 6}
+  - {name: "K7", n: 7}
+
+# Note: Dicke and Weighted runs are done separately via their own configs.
+# This config runs Arithmetic; results for all 3 are aggregated in the manifest.

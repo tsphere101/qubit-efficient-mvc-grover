@@ -1,6 +1,7 @@
 # Core quantum computing
 qiskit>=1.0,<2.0
 qiskit-aer>=0.14,<1.0
+qiskit-ibm-runtime>=0.30
 
 # Optimization & numerical
 numpy>=1.24
@@ -12,6 +13,13 @@ networkx>=3.0
 # Visualization
 matplotlib>=3.7
 pylatexenc>=2.10
+
+# Data handling
+pandas>=2.0
+plotly>=5.0
+
+# Config
+pyyaml>=6.0
 
 # Utilities
 tqdm>=4.64
