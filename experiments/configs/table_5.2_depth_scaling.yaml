@@ -1,0 +1,19 @@
+# Table 5.2 — Circuit depth scaling (Arithmetic, K3-K7, 1-5 Grover iterations)
+table: "5.2"
+title: "Circuit depth scaling with Grover iterations"
+label: "tab:depth-scaling"
+type: grover
+solver_key: arithmetic
+solver: "mvc-solver-1.3.0"
+method: statevector
+shots: 1024
+grover_iterations: "1"  # depth measured per iteration; 1-5 tested
+no_barrier: true
+include_statevector: false
+include_theoretical: false
+graphs:
+  - {name: "K3", n: 3}
+  - {name: "K4", n: 4}
+  - {name: "K5", n: 5}
+  - {name: "K6", n: 6}
+  - {name: "K7", n: 7}

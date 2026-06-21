@@ -1,0 +1,16 @@
+# Table 5.5 — Grover vs QAOA comparison
+table: "5.5"
+title: "Grover vs QAOA comparison"
+label: "tab:grover-vs-qaoa"
+type: qaoa
+method: statevector
+shots: 4096
+p_values: [1]
+maxiter: 80
+random_restarts: 5
+graphs:
+  - {name: "K3", n: 3}
+  - {name: "K4", n: 4}
+  - {name: "K5", n: 5}
+  - {name: "K6", n: 6}
+  - {name: "K7", n: 7}

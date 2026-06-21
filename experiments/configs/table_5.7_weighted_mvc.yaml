@@ -1,0 +1,34 @@
+# Table 5.7 — Weighted MVC results (K_{2,2}..K_{3,5} bipartite family)
+table: "5.7"
+title: "Weighted MVC results using the Arithmetic Grover approach"
+label: "tab:weighted-results"
+type: grover
+solver_key: weighted
+solver: "mvc-solver-1.5.0"
+method: statevector
+shots: 1024
+grover_iterations: "optimal"
+no_barrier: true
+include_statevector: true
+skip_k: true
+graphs:
+  - name: "K_{2,2}"
+    n: 4
+    edges: [[0,2],[0,3],[1,2],[1,3]]
+    weights: [1,2,3,4]
+  - name: "K_{2,3}"
+    n: 5
+    edges: [[0,2],[0,3],[0,4],[1,2],[1,3],[1,4]]
+    weights: [2,3,1,4,5]
+  - name: "K_{3,3}"
+    n: 6
+    edges: [[0,3],[0,4],[0,5],[1,3],[1,4],[1,5],[2,3],[2,4],[2,5]]
+    weights: [5,2,3,1,4,6]
+  - name: "K_{3,4}"
+    n: 7
+    edges: [[0,3],[0,4],[0,5],[0,6],[1,3],[1,4],[1,5],[1,6],[2,3],[2,4],[2,5],[2,6]]
+    weights: [3,7,2,5,1,4,6]
+  - name: "K_{3,5}"
+    n: 8
+    edges: [[0,3],[0,4],[0,5],[0,6],[0,7],[1,3],[1,4],[1,5],[1,6],[1,7],[2,3],[2,4],[2,5],[2,6],[2,7]]
+    weights: [2,4,6,8,1,3,5,7]
