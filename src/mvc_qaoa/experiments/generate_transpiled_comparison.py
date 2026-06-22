@@ -132,5 +132,5 @@ ax.set_title('Resource Comparison (Transpiled to {CX, RZ, SX, X})')
 ax.legend()
 ax.grid(True, alpha=0.3)
 
-plt.savefig(f'{OUT_DIR}/fig_depth_comparison.png', dpi=150, bbox_inches='tight')
+plt.savefig(f'{OUT_DIR}/fig_depth_comparison.png', dpi=300, bbox_inches='tight')
 print("Saved depth figure")

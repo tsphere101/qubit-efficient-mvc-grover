@@ -679,19 +679,26 @@ def create_arithmetic_k7_circuit():
     return circuit, hier_circuit
 
 
-def save_circuit_to_subdir(circuit, subdir, filename, fold=-1):
-    """Save circuit to subdirectory"""
+def save_circuit_to_subdir(circuit, subdir, filename, fold=-1, dpi=300):
+    """Save circuit to subdirectory
+
+    Args:
+        fold: Number of gates per row. -1 = no folding (single row, very wide
+            for long circuits). Use a positive value to wrap the circuit into
+            multiple rows, improving the aspect ratio for print.
+        dpi: Output resolution. 300 is sufficient for print.
+    """
     subdir_path = os.path.join(OUTPUT_DIR, subdir)
     os.makedirs(subdir_path, exist_ok=True)
     filepath = os.path.join(subdir_path, filename)
-    
+
     fig = circuit.draw(
         output='mpl',
         fold=fold,
         idle_wires=False,
     )
-    
-    fig.savefig(filepath, dpi=300, bbox_inches='tight', facecolor='white', edgecolor='none')
+
+    fig.savefig(filepath, dpi=dpi, bbox_inches='tight', facecolor='white', edgecolor='none')
     print(f"  Saved: {filepath}")
     return filepath
 
@@ -800,7 +807,7 @@ def main():
     # K3 circuits
     print("\n--- K3 Circuits ---")
     dicke_full, dicke_hier = create_dicke_hierarchical()
-    save_circuit_to_subdir(dicke_full, 'dicke_state', 'k3_full.png')
+    save_circuit_to_subdir(dicke_full, 'dicke_state', 'k3_full.png', fold=40)
     save_circuit_to_subdir(dicke_hier, 'dicke_state', 'k3_main.png')
     
     dicke_oracle = create_dicke_oracle_detail()
@@ -820,7 +827,7 @@ def main():
     # K3 circuits
     print("\n--- K3 Circuits ---")
     arith_full, arith_hier = create_arithmetic_hierarchical()
-    save_circuit_to_subdir(arith_full, 'arithmetic', 'k3_full.png')
+    save_circuit_to_subdir(arith_full, 'arithmetic', 'k3_full.png', fold=75)
     save_circuit_to_subdir(arith_hier, 'arithmetic', 'k3_main.png')
     
     arith_oracle = create_arithmetic_oracle_detail()
@@ -843,7 +850,7 @@ def main():
     # K3 circuits
     print("\n--- K3 Circuits ---")
     weighted_full, weighted_hier = create_weighted_hierarchical()
-    save_circuit_to_subdir(weighted_full, 'weighted', 'k3_full.png')
+    save_circuit_to_subdir(weighted_full, 'weighted', 'k3_full.png', fold=100)
     save_circuit_to_subdir(weighted_hier, 'weighted', 'k3_main.png')
     
     weighted_oracle = create_weighted_oracle_detail()
