@@ -26,6 +26,7 @@ class SolverConfig:
     barrier: bool = True
     barrier: bool = True
     vertex_weights: Optional[List[int]] = None
+    no_plot: bool = False
 
     def __post_init__(self):
         nodes = set()
