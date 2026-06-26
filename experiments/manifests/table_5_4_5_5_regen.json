@@ -1,0 +1,99 @@
+{
+  "manifest_version": "1.0",
+  "thesis_labels": {
+    "tab:success-prob": {
+      "caption": "Success probability for the Arithmetic approach on complete graphs K_n",
+      "rows": {
+        "K_3": {
+          "n": 3,
+          "pivot": 3,
+          "p_success": {
+            "1": 0.8437500000000002,
+            "2": 0.023437499999999833,
+            "3": 0.9902343749999999
+          }
+        },
+        "K_4": {
+          "n": 4,
+          "pivot": 4,
+          "p_success": {
+            "1": 1.0,
+            "2": 0.25000000000000033,
+            "3": 0.24999999999999978
+          }
+        },
+        "K_5": {
+          "n": 5,
+          "pivot": 5,
+          "p_success": {
+            "1": 0.88134765625,
+            "2": 0.8020401000976564,
+            "3": 0.08561670780181893
+          }
+        },
+        "K_6": {
+          "n": 6,
+          "pivot": 6,
+          "p_success": {
+            "1": 0.6459960937499998,
+            "2": 0.9997787475585938,
+            "3": 0.6741746664047242
+          }
+        },
+        "K_7": {
+          "n": 7,
+          "pivot": 7,
+          "p_success": {
+            "1": 0.42302703857421875,
+            "2": 0.8550346419215202,
+            "3": 0.9933758959450641
+          }
+        }
+      }
+    },
+    "tab:grover-vs-qaoa": {
+      "caption": "Success probability comparison: Grover (Arithmetic) versus QAOA (p=1)",
+      "note": "QAOA column comes from mvc_qaoa (separate regen), not this script. Grover (optimal) and Optimal iterations are from the Boyer 1998 analytical formula.",
+      "rows": {
+        "K_3": {
+          "n": 3,
+          "pivot": 3,
+          "p_optimal": 0.9902343749999999,
+          "optimal_iter_empirical": 3,
+          "optimal_iter_analytical_boyer1998": 1
+        },
+        "K_4": {
+          "n": 4,
+          "pivot": 4,
+          "p_optimal": 1.0,
+          "optimal_iter_empirical": 1,
+          "optimal_iter_analytical_boyer1998": 1
+        },
+        "K_5": {
+          "n": 5,
+          "pivot": 5,
+          "p_optimal": 0.88134765625,
+          "optimal_iter_empirical": 1,
+          "optimal_iter_analytical_boyer1998": 1
+        },
+        "K_6": {
+          "n": 6,
+          "pivot": 6,
+          "p_optimal": 0.9997787475585938,
+          "optimal_iter_empirical": 2,
+          "optimal_iter_analytical_boyer1998": 2
+        },
+        "K_7": {
+          "n": 7,
+          "pivot": 7,
+          "p_optimal": 0.9933758959450641,
+          "optimal_iter_empirical": 3,
+          "optimal_iter_analytical_boyer1998": 3
+        }
+      }
+    }
+  },
+  "method": "Boyer 1998 analytical formula",
+  "formula": "P_k = sin^2((2k+1)*theta) where sin(theta) = sqrt(M/N), M = n, N = 2^n",
+  "pivot_convention": "k = n (verified: counter < n iff valid cover of size n-1)"
+}
