@@ -1,0 +1,46 @@
+{
+    "counts": {
+        "00010": 173,
+        "10000": 166,
+        "00001": 164,
+        "00100": 191,
+        "00000": 163,
+        "01000": 167
+    },
+    "good_states": {},
+    "all_edge_covered_states": {},
+    "pop_count_less_than_pivot_states": {
+        "00010": 173,
+        "10000": 166,
+        "00001": 164,
+        "00100": 191,
+        "00000": 163,
+        "01000": 167
+    },
+    "quasi_probabilities": {
+        "00010": 0.1689453125,
+        "10000": 0.162109375,
+        "00001": 0.16015625,
+        "00100": 0.1865234375,
+        "00000": 0.1591796875,
+        "01000": 0.1630859375
+    },
+    "theoretical_probabilities": null,
+    "statevector": null,
+    "elapsed_time": 0.03663301467895508,
+    "circuit_depth": 33,
+    "transpiled_depth": 64,
+    "qubits_used": 13,
+    "operations": {
+        "x": 55,
+        "ccx": 12,
+        "barrier": 9,
+        "measure": 5,
+        "h": 3,
+        "mcx": 3,
+        "circuit-313": 1,
+        "cx": 1,
+        "circuit-316_dg": 1,
+        "circuit-316": 1
+    }
+}

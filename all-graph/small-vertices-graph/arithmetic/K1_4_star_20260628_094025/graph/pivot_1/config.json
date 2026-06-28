@@ -1,0 +1,31 @@
+{
+    "edges": [
+        [
+            0,
+            1
+        ],
+        [
+            0,
+            2
+        ],
+        [
+            0,
+            3
+        ],
+        [
+            0,
+            4
+        ]
+    ],
+    "pivot_number": 1,
+    "grover_iterations": 1,
+    "shots": 1024,
+    "show_circuit": false,
+    "return_counts": true,
+    "calculate_good_states": true,
+    "calculate_theoretical_probabilities": false,
+    "calculate_statevector": false,
+    "output_dir": "/tmp/mvc_logs/arith_K1_4_star_out/graph/pivot_1",
+    "barrier": true,
+    "penalty_amount": 6
+}

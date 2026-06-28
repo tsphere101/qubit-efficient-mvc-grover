@@ -1,0 +1,39 @@
+{
+    "edges": [
+        [
+            0,
+            1
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            2,
+            3
+        ],
+        [
+            3,
+            0
+        ],
+        [
+            0,
+            2
+        ],
+        [
+            2,
+            4
+        ]
+    ],
+    "pivot_number": 3,
+    "grover_iterations": 1,
+    "shots": 1024,
+    "show_circuit": false,
+    "return_counts": true,
+    "calculate_good_states": true,
+    "calculate_theoretical_probabilities": false,
+    "calculate_statevector": false,
+    "output_dir": "/tmp/mvc_logs/arith_diamond_tail_out/graph/pivot_3",
+    "barrier": true,
+    "penalty_amount": 6
+}

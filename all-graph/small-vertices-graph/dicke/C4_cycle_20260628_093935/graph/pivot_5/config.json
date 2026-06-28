@@ -1,0 +1,31 @@
+{
+    "edges": [
+        [
+            0,
+            1
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            2,
+            3
+        ],
+        [
+            3,
+            0
+        ]
+    ],
+    "pivot_number": 5,
+    "grover_iterations": 1,
+    "shots": 1024,
+    "show_circuit": false,
+    "return_counts": true,
+    "calculate_good_states": true,
+    "calculate_theoretical_probabilities": false,
+    "calculate_statevector": false,
+    "output_dir": "/tmp/mvc_logs/dicke_C4_cycle_out/graph/pivot_5",
+    "barrier": true,
+    "penalty_amount": 5
+}

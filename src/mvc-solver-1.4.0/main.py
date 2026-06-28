@@ -80,10 +80,17 @@ def main():
                              "comma-separated list (e.g. 8,7,6). When set, runs only the "
                              "specified pivots in a single invocation (skips the descending "
                              "loop). All pivots must be in [1, n+1].")
+    parser.add_argument("--output-dir", type=str, default=None,
+                        help="Explicit output directory (overrides auto-generated outputs/run_* path). "
+                             "If set, run results are written here directly. Useful for parallel runs "
+                             "where each job needs an isolated output path.")
     args = parser.parse_args()
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    run_dir = os.path.join("outputs", f"run_{timestamp}")
+    if args.output_dir is not None:
+        run_dir = args.output_dir
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        run_dir = os.path.join("outputs", f"run_{timestamp}")
     os.makedirs(run_dir, exist_ok=True)
 
     summary = []
