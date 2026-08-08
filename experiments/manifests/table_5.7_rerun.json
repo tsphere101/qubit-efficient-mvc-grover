@@ -94,6 +94,6 @@
     ],
     "elapsed": 1.5,
     "status": "fail",
-    "stderr": "Simulation failed and returned the following error message:\nERROR:  [Experiment 0] Insufficient memory to run circuit circuit-46-49 using the statevector simulator. Required memory: 32768M, max memory: 16384M\nTraceback (most recent call last):\n  File \"/Users/topfee/Desktop/qubit-efficient-mvc-grover/src/mvc-solver-1.5.0/main.py\", line 105, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/topfee/Desktop/qubit-efficient-mvc-grover/src/mvc-solver-1.5.0/main.py\", line 88, in main\n    min_size, best "
+    "stderr": "Simulation failed and returned the following error message:\nERROR:  [Experiment 0] Insufficient memory to run circuit circuit-46-49 using the statevector simulator. Required memory: 32768M, max memory: 16384M\nTraceback (most recent call last):\n  File \"<repo-root>/src/mvc-solver-1.5.0/main.py\", line 105, in <module>\n    main()\n    ~~~~^^\n  File \"<repo-root>/src/mvc-solver-1.5.0/main.py\", line 88, in main\n    min_size, best "
   }
 ]

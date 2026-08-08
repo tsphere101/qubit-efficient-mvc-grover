@@ -2,15 +2,16 @@
 
 Quantum circuit architectures for solving the Minimum Vertex Cover (MVC) problem using Grover's search algorithm.
 
+This repository contains the code for the manuscript "Qubit-Efficient Quantum Circuit for the Minimum Vertex Cover Problem using Grover's Algorithm" (IEEE Transactions on Quantum Engineering, TQE-26-05-REG-0223).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
 ## Directory Structure
 
 ```
 .
-├── manuscript/                     # LaTeX paper + figures
-│   ├── tqe.tex                   # Paper source
-│   ├── figures/                  # All figures (57 PNG)
-│   ├── exported-items.bib        # Bibliography
-│   └── generate_scaling_charts.py
 ├── src/
 │   ├── mvc-solver-1.3.0/         # Arithmetic architecture
 │   ├── mvc-solver-1.4.0/         # Dicke-state architecture

@@ -7,7 +7,7 @@ import sys
 import os
 from pathlib import Path
 
-REPO_ROOT = Path("/Users/topfee/Desktop/qubit-efficient-mvc-grover")
+REPO_ROOT = Path(__file__).resolve().parents[2]
 SOLVER_DIR = REPO_ROOT / "src" / "mvc-solver-1.3.0"
 sys.path.insert(0, str(SOLVER_DIR))
 

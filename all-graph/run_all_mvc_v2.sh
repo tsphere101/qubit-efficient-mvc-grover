@@ -10,7 +10,7 @@
 set -e
 
 # ---------- Configuration ----------
-REPO="${REPO:-/Users/topfee/Desktop/qubit-efficient-mvc-grover}"
+REPO="${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 ARITH_DIR="$REPO/src/mvc-solver-1.3.0"
 DICKE_DIR="$REPO/src/mvc-solver-1.4.0"
 VENV="${VENV:-$REPO/.venv/bin/activate}"
