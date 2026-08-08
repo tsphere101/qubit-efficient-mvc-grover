@@ -542,7 +542,7 @@ def create_penalty_detail():
             if p_bit < counter_size:
                 for i in range(counter_size - 1, p_bit - 1, -1):
                     target_idx = num_vertices + i
-                    controls = [u, v] + list(range(num_vertices, num_vertices + i - p_bit))
+                    controls = [u, v] + list(range(num_vertices + p_bit, num_vertices + i))
                     
                     if len(controls) == 2:
                         penalty_detail.ccx(controls[0], controls[1], target_idx)
@@ -695,7 +695,7 @@ def save_circuit_to_subdir(circuit, subdir, filename, fold=-1, dpi=300):
     fig = circuit.draw(
         output='mpl',
         fold=fold,
-        idle_wires=False,
+        idle_wires=True,
     )
 
     fig.savefig(filepath, dpi=dpi, bbox_inches='tight', facecolor='white', edgecolor='none')
