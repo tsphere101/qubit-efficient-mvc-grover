@@ -4,9 +4,6 @@ Quantum circuit architectures for solving the Minimum Vertex Cover (MVC) problem
 
 This repository contains the code for the manuscript "Qubit-Efficient Quantum Circuit for the Minimum Vertex Cover Problem using Grover's Algorithm" (IEEE Transactions on Quantum Engineering, TQE-26-05-REG-0223).
 
-## License
-
-MIT — see [LICENSE](LICENSE).
 
 ## Directory Structure
 
@@ -88,3 +85,7 @@ python main.py  # Runs all 15 graphs × p=1,2,3
 ```bash
 bash scripts/quick_verify.sh
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
