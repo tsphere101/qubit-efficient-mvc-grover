@@ -1,0 +1,7 @@
+[
+    {
+        "task": "graph",
+        "min_size": 1,
+        "top_state": "0001"
+    }
+]

@@ -1,0 +1,33 @@
+{
+    "edges": [
+        [
+            0,
+            1
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            2,
+            3
+        ]
+    ],
+    "pivot_number": 5,
+    "grover_iterations": 1,
+    "shots": 1024,
+    "show_circuit": false,
+    "return_counts": true,
+    "calculate_good_states": true,
+    "calculate_theoretical_probabilities": false,
+    "calculate_statevector": false,
+    "output_dir": "outputs/run_20260701_063120/graph/pivot_5",
+    "barrier": false,
+    "vertex_weights": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "no_plot": false
+}
