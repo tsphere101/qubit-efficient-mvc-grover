@@ -1,23 +1,8 @@
 """Clifford+T resource counts for the three prior-work MVC architectures (Cherif 2024,
 Wang 2023, Jiang & Yan 2023) alongside the three proposed architectures.
 
-The prior-work circuits are reconstructed from the papers:
-  - Cherif et al. (2024), "A simplified quantum approach using Grover's algorithm
-    for solving the vertex cover problem", AICCSA.  Oracle per Algorithm 1 of the
-    paper (edge ancillas + size-(k+1) exclusion register C(n, k+1)).
-  - Wang, Liang, Bao & Wu (2023), "Quantum speedup for solving the minimum vertex
-    cover problem based on Grover search algorithm", Quantum Inf. Process. 22:271.
-    Oracle per the five-register design: edge flags, feasible flag, and a pyramidal
-    CCNOT population counter of (n+1)(n+2)/2 - 1 qubits.
-  - Jiang & Yan (2023), "Novel Quantum Circuit Designs for the Oracle of Grover's
-    Algorithm to Solve the Vertex Cover Problem", ECICE.  Oracle per the paper:
-    shared quantum counter (ceil(log2 n) qubits), quantum-semaphore edge marking
-    (gate order read directly from Fig. 8 of the paper), and an MCX marking gate
-    activated when counter == k.
-
 Every circuit is transpiled into the gate set {H, S, T, CX} at optimization level 3
-and the T-count, T-depth, total depth, and CX count are reported, matching the
-methodology of scripts/clifford_t_count.py so the six rows are directly comparable.
+and the T-count, T-depth, total depth, and CX count are reported.
 """
 
 import itertools
