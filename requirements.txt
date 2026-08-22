@@ -1,5 +1,5 @@
 # Core quantum computing
-qiskit>=1.0,<2.0
+qiskit>=2.4,<3.0
 qiskit-aer>=0.14,<1.0
 qiskit-ibm-runtime>=0.30
 
