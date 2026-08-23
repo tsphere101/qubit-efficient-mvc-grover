@@ -5,7 +5,7 @@ from qiskit.transpiler import generate_preset_pass_manager
 from qiskit.quantum_info import Statevector
 from .models import SolverConfig, SimulationResults
 from .circuit_builder import VertexCoverPenaltyCircuitBuilder
-from .utils import is_valid_cover, get_popcount
+from .utils import is_valid_cover, get_popcount, get_weight_sum
 from reporting.exporter import ResultExporter
 
 class VertexCoverSolverEngine:
@@ -68,7 +68,7 @@ class VertexCoverSolverEngine:
             good_states = {
                 s: c for s, c in counts.items()
                 if is_valid_cover(s, self.config.edges, self.config.num_vertices)
-                and get_popcount(s) < self.config.pivot_number
+                and get_weight_sum(s, self.config.vertex_weights) < self.config.pivot_number
             }
         all_edge_covered_states = None
         if self.config.calculate_good_states:
