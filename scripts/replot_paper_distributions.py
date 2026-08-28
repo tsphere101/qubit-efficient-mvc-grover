@@ -37,7 +37,7 @@ JOBS = [
     (MVCSOLVER / "mvc-solver-1.5.0/outputs/run_20260303_142855/graph/pivot_6",
      "distribution_weighted_P4_1234_01.png"),
     (MVCSOLVER / "mvc-solver-1.5.0/outputs/run_20260303_142944/graph/pivot_2",
-     "distribution_weighted_S4_111010_01.png"),
+     "distribution_weighted_S5_1110101_01.png"),
 ]
 
 PAPER_FIGURES_DIR = Path.home() / "Desktop/overleaf/qemvc-tqe/figures"
