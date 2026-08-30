@@ -14,6 +14,12 @@ A 2-control gate whose target is a dedicated ancilla register
 AND = 4 T.  A 2-control gate on data (comparator carry chain on pivot bits,
 diffuser on vertex register) is a Toffoli = 7 T.
 
+Ladder ancillas are recycled: the T-free AND uncompute (Gidney 2018, Fig. 3;
+0 T, Clifford + measurement-based clear) is materialized after each
+multi-controlled instruction, and its ancillas return to a shared pool.  The
+mcv_anc register therefore holds only the widest single ladder (peak demand),
+not the cumulative sum.
+
 """
 
 import importlib.util
@@ -208,8 +214,10 @@ class LogicalDecomposer:
       - opaque GDS gate ('circuit-*' / GDS / GDS_inv)-> recurse into its
                                                         definition with the
                                                         same rules
-    Each ladder step uses a fresh ancilla and the T-free AND uncompute is not
-    materialized (it contributes 0 T and is not charged, by convention).
+    Ladder ancillas are reused: after each multi-controlled instruction the
+    T-free AND uncompute (Gidney 2018, Fig. 3; 0 T) is materialized and its
+    ancillas return to a shared pool.  mcv_anc is sized to the widest single
+    ladder (peak demand), not the cumulative sum.
     """
 
     def __init__(self):
@@ -221,13 +229,38 @@ class LogicalDecomposer:
         t = ops.get("t", 0) + ops.get("tdg", 0)
         assert t == T_TOFFOLI, f"Toffoli layout has {t} T, expected {T_TOFFOLI}"
         assert ops.get("cx", 0) == 6, f"Toffoli layout has {ops.get('cx', 0)} CX, expected 6"
-        self.ancillas = []
-        self._anc_idx = 0
+        self._free = []
+        self._pool_size = 0
+        self._peak_used = 0
+        self._pending = []
+        self._qc = None
 
-    def _next_ancilla(self):
-        qb = self.ancillas[self._anc_idx]
-        self._anc_idx += 1
+    def _take(self):
+        """Take one ladder ancilla from the shared pool."""
+        if not self._free:
+            raise AssertionError("ancilla pool exhausted - peak sizing wrong")
+        qb = self._free.pop()
+        self._peak_used = max(self._peak_used,
+                              self._pool_size - len(self._free))
         return qb
+
+    def _and_inv(self, a, b, t):
+        """T-free AND uncompute (Gidney 2018, Fig. 3): 0 T.
+
+        Measure-and-fixup erasure, materialized minimally (Clifford + reset)
+        so the reused ancilla is clean (|0>) again.
+        """
+        self._qc.cx(b, t)
+        self._qc.cx(a, t)
+        self._qc.reset(t)
+
+    def _uncompute(self):
+        """Erase this instruction's ladder ancillas (reverse order) and
+        return them to the pool."""
+        for a_prev, ctrl, anc in reversed(self._pending):
+            self._and_inv(a_prev, ctrl, anc)
+            self._free.append(anc)
+        self._pending = []
 
     def _and(self, qc, a, b, t, counter):
         # Gidney AND (compute stage): 4 T, 4 CX.
@@ -254,19 +287,25 @@ class LogicalDecomposer:
         counter["ry"] += 1
 
     def _ladder(self, qc, controls, target, counter, fresh_last=False):
-        """(len(controls)-1)-AND Gidney ladder.  Returns the last AND target."""
+        """(len(controls)-1)-AND Gidney ladder.  Returns the last AND target.
+
+        Ancillas come from the shared pool; each one is recorded so the
+        T-free uncompute returns them to the pool after the instruction.
+        """
         prev = controls[0]
         last = len(controls) - 1
         for i in range(1, len(controls)):
             if i == last and not fresh_last:
                 nxt = target
             else:
-                nxt = self._next_ancilla()
+                nxt = self._take()
+                self._pending.append((prev, controls[i], nxt))
             self._and(qc, prev, controls[i], nxt, counter)
             prev = nxt
         return prev
 
     def _walk(self, qc, src, instructions, qmap=None):
+        self._qc = qc
         for inst in instructions:
             op = inst.operation
             raw_qubits = inst.qubits
@@ -290,6 +329,7 @@ class LogicalDecomposer:
                     if c < 3:
                         raise AssertionError(f"unexpected mcx with {c} controls")
                     self._ladder(qc, qubits[:-1], qubits[-1], self.counter)
+                    self._uncompute()
                 elif name in ("mcphase", "mcp"):
                     qc.h(qubits[-1])
                     if n == 3:
@@ -299,6 +339,7 @@ class LogicalDecomposer:
                     else:
                         self._ladder(qc, qubits[:-1], qubits[-1], self.counter)
                     qc.h(qubits[-1])
+                    self._uncompute()
                 elif name == "ry":
                     self._ry(qc, qubits[0], self.counter)
                 elif name == "cry":
@@ -317,6 +358,7 @@ class LogicalDecomposer:
                     self._ry(qc, target, self.counter)
                     qc.cx(combined, target)
                     self._ry(qc, target, self.counter)
+                    self._uncompute()
                 elif name.startswith("circuit-") or name in ("GDS", "GDS_inv"):
                     definition = op.definition
                     if definition is None:
@@ -331,43 +373,59 @@ class LogicalDecomposer:
                     raise AssertionError(f"cannot decompose gate {name}")
 
     def _ancilla_need(self, src, start, end):
-        total = 0
+        """Peak (not sum) number of ladder ancillas held at once.
+
+        Every instruction erases its ladder T-free and releases the
+        ancillas, so only the widest single instruction coexists.
+        """
+        peak = 0
         for inst in src.data[start:end]:
             op = inst.operation
             name = op.name
             n = len(inst.qubits)
+            need = 0
             if name == "mcx" and n > 3:
-                total += n - 3            # (n-1) controls -> c-2 ancillas
+                need = n - 3            # (n-1) controls -> c-2 ancillas
             elif name in ("mcphase", "mcp") and n > 3:
-                total += n - 3
+                need = n - 3
             elif isinstance(op, AnnotatedOperation):
                 base = op.base_op
                 n_ctrl = sum(m.num_ctrl_qubits for m in op.modifiers
                              if isinstance(m, ControlModifier))
                 if not isinstance(base, RYGate):
                     raise AssertionError(f"unexpected annotated base {base.name}")
-                total += n_ctrl - 1       # c controls -> c-1 ancillas
+                need = n_ctrl - 1       # c controls -> c-1 ancillas
             elif name.startswith("circuit-") or name in ("GDS", "GDS_inv"):
                 definition = op.definition
                 if definition is None:
                     raise AssertionError(f"opaque gate without definition: {name}")
-                total += self._ancilla_need(definition, 0, len(definition.data))
-        return total
+                need = self._ancilla_need(definition, 0, len(definition.data))
+            peak = max(peak, need)
+        return peak
 
     def decompose(self, circuit, start=0, end=None):
-        """Materialize circuit.data[start:end]; return (qc, T-count of qc)."""
+        """Materialize circuit.data[start:end]; return (qc, T-count of qc).
+
+        mcv_anc holds only the widest single ladder (peak demand); ladder
+        ancillas are erased T-free and reused across instructions.
+        """
         end = len(circuit.data) if end is None else end
         need = self._ancilla_need(circuit, start, end)
         qc = QuantumCircuit(*circuit.qregs)
         if need:
             anc = QuantumRegister(need, "mcv_anc")
             qc.add_register(anc)
-            self.ancillas = list(anc)
+            self._free = list(anc)
+            self._pool_size = need
         else:
-            self.ancillas = []
-        self._anc_idx = 0
+            self._free = []
+            self._pool_size = 0
+        self._peak_used = 0
+        self._pending = []
         self.counter = Counter()
         self._walk(qc, circuit, circuit.data[start:end])
+        assert self._peak_used == need, "ancilla pool larger than needed"
+        assert len(self._free) == need, "unreleased ladder ancillas at end"
         ops = qc.count_ops()
         t_count = ops.get("t", 0) + ops.get("tdg", 0)
         return qc, t_count
@@ -703,6 +761,7 @@ def main():
             "architecture": architecture, "graph": label,
             "vertex_weights": weights, "pivot": pivot,
             "qubits": circuit.num_qubits,
+            "ancillas": decomposed.num_qubits - circuit.num_qubits,
             "primitive_counts": {str(k): v for k, v in ops.items()},
             "t_preparation": t_prep, "t_gdsp": t_gdsp,
             "t_oracle": t_oracle, "t_diffusion": t_diffusion,
@@ -714,6 +773,7 @@ def main():
             "N": N, "W": W, "t_tot": t_tot,
         })
         print(f"{architecture:>10} {label:>3} q={circuit.num_qubits:>3} "
+              f"anc={decomposed.num_qubits - circuit.num_qubits:>4} "
               f"T(G=1)={t_iter_g1:>7} T-depth={t_depth:>7} Depth={depth:>9} CX={cx:>7} "
               f"| N={N} W={W} T_tot(W)={t_tot:>8}")
 
@@ -747,6 +807,7 @@ def main():
                 "architecture": architecture, "graph": f"K{n}",
                 "vertex_weights": [1] * n, "pivot": n,
                 "qubits": iteration.num_qubits,
+                "ancillas": decomposed.num_qubits - iteration.num_qubits,
                 "primitive_counts": {str(k): v for k, v in classify(iteration).items()},
                 "t_preparation": t_prep, "t_gdsp": 0, "t_oracle": t_oracle,
                 "t_diffusion": t_diffusion, "t_iteration": t_iteration,
@@ -757,6 +818,7 @@ def main():
                 "N": N, "W": W, "t_tot": t_tot,
             })
             print(f"{architecture:>10} K{n}    q={iteration.num_qubits:>3} "
+                  f"anc={decomposed.num_qubits - iteration.num_qubits:>4} "
                   f"T_iter={t_iteration:>7} T-depth={t_depth:>7} Depth={depth:>9} CX={cx:>7} "
                   f"| N={N} W={W} T_tot(W)={t_tot:>8}")
 
